@@ -21,14 +21,16 @@ public class TodoActivity extends Activity {
 	ArrayList<String> items;
 	ArrayAdapter<String> itemsAdapter;
 	ListView lvItems;
+	private static final String fileName = "todo.txt";
 	
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_todo);
-        readItems();
+        //readItems();
         lvItems = (ListView) findViewById(R.id.lvItems);
         items = new ArrayList<String>();
+        readItems();
         itemsAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,items);
         lvItems.setAdapter(itemsAdapter);
         setupListViewListener();
@@ -44,10 +46,10 @@ public class TodoActivity extends Activity {
     
     public void addToDoItem(View v){
     	EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
-    	itemsAdapter.add(etNewItem.getText().toString().trim());
+    	String newStr = etNewItem.getText().toString().trim();
+    	itemsAdapter.add(newStr);
+    	saveItems(newStr);
     	etNewItem.setText("");
-    	
-    	
     }
     
     private void setupListViewListener(){
@@ -56,7 +58,6 @@ public class TodoActivity extends Activity {
     		public boolean onItemLongClick(AdapterView<?> aView, View item, int pos, long id){
     			items.remove(pos);
     			itemsAdapter.notifyDataSetInvalidated();
-    			saveItems();
     			return true;
     		}	
     	}
@@ -67,9 +68,20 @@ public class TodoActivity extends Activity {
     
     private void readItems(){
     	File filesDir = getFilesDir();
-    	File todoFile = new File(filesDir, "todo.txt");
+    	System.out.println("FilesDir :: " + filesDir);
+        //Check the file in desired location
+    	
+    	
+    	//Create new file only if it does not exist
+    	File todoFile = new File(filesDir, fileName);
     	try{
-    		items = new ArrayList<String>(FileUtils.readLines(todoFile));
+    		
+    		ArrayList<String> itemList = FileUtils.readLines(todoFile);
+    		
+    		if (itemList != null && itemList.size() > 0){
+    			items.addAll(itemList);
+    		}
+    		
     		
     	}catch(Exception ex){
     		
@@ -78,11 +90,13 @@ public class TodoActivity extends Activity {
     }
     
     
-    private void saveItems(){
+    private void saveItems(String newText){
     	File filesDir = getFilesDir();
-    	File todoFile = new File(filesDir, "todo.txt");
+    	System.out.println("FilesDir :: " + filesDir);
+    	File todoFile = new File(filesDir,fileName);
+    	System.out.println("File to be created :: " + todoFile.toString());
     	try{
-    		FileUtils.writeLines(todoFile, items);
+    		FileUtils.writeLines(todoFile, newText);
     	}catch(Exception ex){
     		
     	}

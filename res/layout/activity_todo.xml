@@ -24,8 +24,8 @@
         android:layout_alignLeft="@+id/lvItems"
         android:layout_below="@+id/lvItems"
         android:layout_marginTop="14dp"
-        android:ems="10"
-        android:hint="Enter new item" >
+        android:ems="8"
+        android:hint="@string/default_hint_text" >
 
         <requestFocus />
     </EditText>
@@ -34,10 +34,24 @@
         android:id="@+id/btnAddItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/etNewItem"
-        android:layout_alignBottom="@+id/etNewItem"
-        android:layout_alignRight="@id/lvItems"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/btnSaveList"
+        android:minHeight="40dp"
+        android:minWidth="60dp"
         android:onClick="addToDoItem"
-        android:text="Add" />
+        android:text="@string/add"
+        android:textSize="14dp" />
+    
+    <Button
+        android:id="@+id/btnSaveList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/lvItems"
+        android:minHeight="40dp"
+        android:minWidth="60dp"
+        android:onClick="saveFinalList"
+        android:text="@string/save"
+        android:textSize="14dp" />
 
 </RelativeLayout>

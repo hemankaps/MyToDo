@@ -71,6 +71,8 @@ public class TodoActivity extends Activity {
     		public boolean onItemLongClick(AdapterView<?> aView, View item, int pos, long id){
     			items.remove(pos);
     			itemsAdapter.notifyDataSetInvalidated();
+    			//Update the file after removing the item.
+    			updateFinalList();
     			return true;
     		}	
     	}
@@ -147,17 +149,6 @@ public class TodoActivity extends Activity {
     	} catch(Exception ex){
     		System.out.println(ex.getMessage());
     	}
-    }
-    
-    /**
-     * This method will be called to Save the current list on user screen.
-     * This will persist the latest list on disk and discard the old one.
-     * @param v
-     */
-    
-    public void saveFinalList(View v){
-    	
-    	updateFinalList();
     }
     
     /**

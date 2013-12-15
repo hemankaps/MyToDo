@@ -8,50 +8,50 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".TodoActivity" >
 
-     <ListView
-        android:id="@+id/lvItems"
-        android:layout_width="match_parent"
-        android:layout_height="380dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true" 
-        > 
-    </ListView>   
+       
 
     <EditText
         android:id="@+id/etNewItem"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/lvItems"
-        android:layout_below="@+id/lvItems"
         android:layout_marginTop="14dp"
         android:ems="8"
+        android:inputType="text"
         android:hint="@string/default_hint_text" >
 
         <requestFocus />
+         <!--android:layout_alignLeft="@+id/lvItems"
+        android:layout_below="@+id/lvItems" -->
     </EditText>
+        
+     <Button
+         android:id="@+id/btnAddItem"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBaseline="@+id/btnSaveList"
+         android:layout_alignBottom="@+id/btnSaveList"
+         android:layout_toRightOf="@+id/etNewItem"
+         android:minHeight="40dp"
+         android:minWidth="60dp"
+         android:onClick="addToDoItem"
+         android:text="@string/add"
+         android:textSize="14sp" />
+     
+      <!--  android:layout_alignParentBottom="true" -->
+ <!--   android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/lvItems" -->
+        
+        
+     <ListView
+        android:id="@+id/lvItems"
+        android:layout_width="match_parent"
+        android:layout_height="380dp"
+        android:layout_below="@+id/etNewItem">
+        <!-- android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"  -->
+        
+    </ListView>
 
-    <Button
-        android:id="@+id/btnAddItem"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/btnSaveList"
-        android:minHeight="40dp"
-        android:minWidth="60dp"
-        android:onClick="addToDoItem"
-        android:text="@string/add"
-        android:textSize="14dp" />
-    
-    <Button
-        android:id="@+id/btnSaveList"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/lvItems"
-        android:minHeight="40dp"
-        android:minWidth="60dp"
-        android:onClick="saveFinalList"
-        android:text="@string/save"
-        android:textSize="14dp" />
+
 
 </RelativeLayout>

@@ -73,7 +73,7 @@ public class FileUtils {
 				//check if the file exist, else create a new
 			    if(!todo.exists()){
 			    	todo.createNewFile();
-			    	todo.setWritable(true);
+			    	//todo.setWritable(true);
 			    } 
 					
 		          OutputStreamWriter out = new OutputStreamWriter(new FileOutputStream(todo,MODE_APPEND));

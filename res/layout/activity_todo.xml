@@ -8,8 +8,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".TodoActivity" >
 
-       
-
     <EditText
         android:id="@+id/etNewItem"
         android:layout_width="wrap_content"
@@ -18,31 +16,10 @@
         android:ems="8"
         android:inputType="text"
         android:hint="@string/default_hint_text" >
-
         <requestFocus />
-         <!--android:layout_alignLeft="@+id/lvItems"
-        android:layout_below="@+id/lvItems" -->
-    </EditText>
-        
-     <Button
-         android:id="@+id/btnAddItem"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:layout_alignBaseline="@+id/btnSaveList"
-         android:layout_alignBottom="@+id/btnSaveList"
-         android:layout_toRightOf="@+id/etNewItem"
-         android:minHeight="40dp"
-         android:minWidth="60dp"
-         android:onClick="addToDoItem"
-         android:text="@string/add"
-         android:textSize="14sp" />
-     
-      <!--  android:layout_alignParentBottom="true" -->
- <!--   android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/lvItems" -->
-        
-        
-     <ListView
+      </EditText>
+
+    <ListView
         android:id="@+id/lvItems"
         android:layout_width="match_parent"
         android:layout_height="380dp"
@@ -52,6 +29,16 @@
         
     </ListView>
 
-
+     <Button
+         android:id="@+id/btnAddItem"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_alignBottom="@+id/etNewItem"
+         android:layout_toRightOf="@+id/etNewItem"
+         android:minHeight="40dp"
+         android:minWidth="60dp"
+         android:onClick="addToDoItem"
+         android:text="@string/add"
+         android:textSize="14sp" />
 
 </RelativeLayout>

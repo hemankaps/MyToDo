@@ -17,6 +17,7 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class TodoActivity extends Activity {
 
@@ -73,6 +74,8 @@ public class TodoActivity extends Activity {
     			itemsAdapter.notifyDataSetInvalidated();
     			//Update the file after removing the item.
     			updateFinalList();
+    			Toast toast = Toast.makeText(getApplicationContext(), "Item Deleted Successfully", Toast.LENGTH_SHORT);
+    		    toast.show();
     			return true;
     		}	
     	}
@@ -110,6 +113,8 @@ public class TodoActivity extends Activity {
 	     items.add(itemPos, etText);
 	     itemsAdapter.notifyDataSetInvalidated();
 	     updateFinalList();
+	     Toast toast = Toast.makeText(getApplicationContext(), "List Updated Successfully", Toast.LENGTH_SHORT);
+		 toast.show();
 	     
 	  }
 	} 
@@ -160,6 +165,7 @@ public class TodoActivity extends Activity {
      	for (String lsText: items) {
  			saveItems(lsText);
  		}
+     	
      }
     /**
      * This method will delete the list entries from disk

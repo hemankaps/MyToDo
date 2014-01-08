@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FileUtils {
 
@@ -24,29 +25,19 @@ public class FileUtils {
 	 */
 	public static ArrayList<String> readLines(File fileName) throws FileNotFoundException{
 	  
-		
 		ArrayList<String> lvItems = new ArrayList<String>();
-		
 		//check if given file exists
 		if(fileName.exists()){
-			
 			try{
-				 
 				 InputStream instream = new FileInputStream(fileName);	 
-			
 		            if (instream != null) {               
-		               
 		            	// prepare the file for reading
 		            	InputStreamReader inputreader = new InputStreamReader(instream);
 		            	buffreader = new BufferedReader(inputreader);
-		            	
-		    
 		            	String line=null;
-		            
 			            while (( line = buffreader.readLine()) != null) {
 			                //buffered reader reads only one line at a time, hence we give a while loop to read all till the text is null
-			                                       
-			                            lvItems.add(line);   
+			                 lvItems.add(line);   
 			            }
 		          }
 		                                     
@@ -101,6 +92,41 @@ public class FileUtils {
 			throw new FileNotFoundException("File does not Exist");
 		}
 		
+	}
+
+	public static void getAvailableLists() {
+		// read the dir and get list of files available.
+		
+		
+	}
+
+	public static ArrayList<String> getAvailableLists(File filesDir) {
+		// TODO Auto-generated method stub
+		
+		ArrayList<String> fileList = new ArrayList<String>();
+		if(filesDir.isDirectory()){
+			String[] fileArray = filesDir.list();
+		
+			if(fileArray != null && fileArray.length > 0){
+				for(String fileName: fileArray){
+					fileList.add(fileName);
+				}
+		  }
+		  fileList = removeExtension(fileList);
+		}
+		return fileList;
+	}
+	
+	private static ArrayList<String> removeExtension(List<String> fileList){
+		ArrayList<String> fileNames = new ArrayList<String>();
+		if(fileList != null && fileList.size() > 0){
+			for(String fileStr: fileList){
+				int indx = fileStr.lastIndexOf(".");
+				String nameWithoutExtn = fileStr.substring(0, indx);
+				fileNames.add(nameWithoutExtn);
+			}
+		}
+		return fileNames;
 	}
 	
 }
